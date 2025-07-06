@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 import {
@@ -46,6 +47,12 @@ const Login = props => {
       setErrorText(errortext)
       setErrorStatus(true)
     }
+  }
+
+  const jwtToken = Cookies.get('jwt_token')
+
+  if (jwtToken !== undefined) {
+    return <Redirect to="/" />
   }
 
   return (
